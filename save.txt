@@ -1,0 +1,134 @@
+3
+clan
+griffin 9 1500.0 7
+jahlove 8 -1.0 17
+purp 8 -1.0 21
+mike 9 -1.0 4
+golden 9 600.0 3
+braeven 8 0.0 16
+abdu 8 -1.0 51
+rileyy 8 -1.0 51
+lejit 8 1400.0 25
+max 8 903.0 14
+zi 9 0.0 11
+sorin 8 300.0 24
+dolan 8 600.0 20
+yessica 9 1800.0 1
+patrick 9 850.0 9
+alphonso 8 1200.0 18
+hurgoth 8 1000.0 15
+terram 8 400.0 23
+steve 9 400.0 8
+wardoctor 9 2100.0 5
+shinji 8 500.0 22
+andrew 9 700.0 6
+brandon 8 1900.0 12
+nikko 8 1100.0 13
+matt 9 1200.0 2
+jeffrey 9 1050.0 10
+endLoadClan
+
+war0
+griffin 9 1 1 1
+rileyy 8 3 1 1
+ashoka 8 0 0 0
+max 8 6 2 2
+zi 9 6 2 2
+sorin 8 4 2 2
+dolan 8 5 2 2
+yessica 9 1 2 1
+patrick 9 3 2 1
+alphonso 8 4 2 2
+hurgoth 8 5 2 2
+terram 8 3 2 2
+steve 9 3 2 1
+wardoctor 9 5 2 2
+shinji 8 5 2 2
+andrew 9 3 2 2
+brandon 8 3 2 2
+nikko 9 5 2 2
+matt 9 3 2 1
+jeffrey 9 4 2 2
+war0End
+
+war1
+griffin 9 1 1 1
+ashoka 8 0 1 0
+lejit 8 5 2 2
+max 8 2 2 2
+zi 9 3 1 1
+sorin 8 3 2 2
+dolan 8 4 2 2
+yessica 9 4 2 2
+patrick 9 2 2 1
+alphonso 8 0 2 0
+hurgoth 8 4 2 2
+terram 8 0 1 0
+steve 9 0 1 0
+wardoctor 9 1 2 1
+shinji 8 1 2 1
+andrew 9 4 2 2
+brandon 8 5 2 2
+nikko 9 0 2 0
+matt 9 2 2 1
+jeffrey 9 1 2 1
+war1End
+
+war2
+lejit 8 3 2 1
+brandon 8 4 2 2
+dolan 8 2 2 2
+yessica 9 4 2 2
+hurgoth 8 3 2 1
+max 8 1 2 1
+patrick 9 2 2 2
+matt 9 4 2 2
+griffin 9 4 2 2
+wardoctor 9 4 2 2
+shinji 8 2 2 1
+andrew 9 2 2 1
+jeffrey 9 2 2 2
+ashoka 8 0 0 0
+zi 9 0 2 0
+alphonso 8 3 2 2
+terram 8 3 2 1
+steve 9 5 2 2
+nikko 9 3 2 1
+braeven 8 0 2 0
+war2End
+
+war3
+matt 9 1 2 1
+griffin 9 3 2 1
+wardoctor 9 2 2 1
+brandon 8 4 2 2
+lejit 8 6 2 2
+alphonso 8 1 2 1
+hurgoth 8 3 2 1
+yessica 9 2 2 1
+andrew 9 1 2 1
+patrick 9 3 2 2
+steve 9 0 1 1
+terram 8 1 2 1
+shinji 8 2 2 1
+nikko 8 2 2 1
+jeffrey 9 4 2 2
+dolan 8 0 2 0
+max 8 3 2 2
+golden 9 3 2 2
+braeven 8 0 2 0
+zi 9 0 2 0
+war3End
+
+
+
+
+
+
+
+
+
+Name TH Stars AttacksUsed AttacksWon
+
+
+endSaveFile

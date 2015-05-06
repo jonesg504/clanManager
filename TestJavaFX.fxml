@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="789.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simpleController">
+  <tabs>
+    <Tab text="Clan Overview">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <LineChart id="clanPageChart" fx:id="clanPageChart" layoutX="142.0" layoutY="46.0" prefHeight="310.0" prefWidth="506.0" title="Performance">
+                    <xAxis>
+                      <NumberAxis id="xAxis" side="BOTTOM" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis id="yAxis" fx:id="yAxis" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <HBox layoutX="170.0" layoutY="356.0" prefHeight="36.0" prefWidth="449.0">
+                     <children>
+                        <ToggleButton mnemonicParsing="false" onAction="#handleToggle1Action" text="Performance">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="graphButton" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton mnemonicParsing="false" onAction="#handleToggle2Action" text="Participation" toggleGroup="$graphButton" />
+                        <ToggleButton mnemonicParsing="false" onAction="#handleToggle3Action" text="Wasted Attacks" toggleGroup="$graphButton" />
+                        <ToggleButton mnemonicParsing="false" text="ToggleButton" toggleGroup="$graphButton" />
+                        <ToggleButton mnemonicParsing="false" text="ToggleButton" toggleGroup="$graphButton" />
+                     </children>
+                  </HBox>
+                  <Button layoutX="668.0" layoutY="125.0" mnemonicParsing="false" text="Button" />
+                  <Button layoutX="681.0" layoutY="169.0" mnemonicParsing="false" text="Button" />
+                  <Button layoutX="661.0" layoutY="225.0" mnemonicParsing="false" onAction="#popupExample" text="Button" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="War Overview">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView id="warListView" fx:id="warListView" layoutX="14.0" layoutY="13.0" onMouseClicked="#handleWarSelection" prefHeight="423.0" prefWidth="149.0" />
+                  <StackedBarChart fx:id="warChart" layoutX="199.0" layoutY="129.0" prefHeight="271.0" prefWidth="383.0">
+                    <xAxis>
+                      <CategoryAxis fx:id="warXAxis" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="warYAxis" side="LEFT" />
+                    </yAxis>
+                  </StackedBarChart>
+                  <TextArea layoutX="624.0" layoutY="14.0" prefHeight="411.0" prefWidth="151.0" />
+                  <ToggleButton fx:id="warBarChart" layoutX="203.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleWarToggle" text="ToggleButton">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="warGraph" />
+                     </toggleGroup></ToggleButton>
+                  <ToggleButton fx:id="warStarChart" layoutX="346.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleWarToggle" text="ToggleButton" toggleGroup="$warGraph" />
+                  <ToggleButton fx:id="warWastedAttacks" layoutX="488.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleWarToggle" text="ToggleButton" toggleGroup="$warGraph" />
+                  <Button layoutX="199.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" text="Button" />
+                  <Button layoutX="298.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" text="Button" />
+                  <Button layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" text="Button" />
+                  <Button layoutX="498.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="84.0" text="Button" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Player Overview">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="playerList" layoutX="14.0" layoutY="45.0" prefHeight="390.0" prefWidth="118.0" />
+                  <ComboBox fx:id="playerComboBox" layoutX="14.0" layoutY="14.0" onAction="#handlePlayerComboBox" prefHeight="25.0" prefWidth="118.0" />
+                  <ToggleButton layoutX="145.0" layoutY="13.0" mnemonicParsing="false" onAction="#handlePlayerGraphStars" text="Performance">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="playerGraph" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton layoutX="251.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlePlayerGraphPart" text="Participation" toggleGroup="$playerGraph" />
+                  <ToggleButton layoutX="357.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlePlayerGraphWins" text="Win/Loss" toggleGroup="$playerGraph" />
+                  <ToggleButton layoutX="461.0" layoutY="14.0" mnemonicParsing="false" text="ToggleButton" toggleGroup="$playerGraph" />
+                  <LineChart fx:id="playerLineChart" layoutX="152.0" layoutY="40.0">
+                    <xAxis>
+                      <NumberAxis fx:id="playerStarXAxis" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="playerStarYAxis" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <PieChart id="playerPie" fx:id="playerPieChart" layoutX="190.0" layoutY="45.0" prefHeight="362.0" prefWidth="456.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>
