@@ -78,6 +78,7 @@ public class mainWindow extends JFrame {
 	private static JPanel contentPane;
 	private static JComboBox comboBox;
 	private static int choice = 1;
+	private static int test;
 	private static DefaultComboBoxModel model;
 	private final Action action = new SwingAction();
 	private final Action action_1 = new SwingAction_1();
