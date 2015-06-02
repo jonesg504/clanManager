@@ -81,6 +81,7 @@ public class OptOutMenu extends JFrame {
 		for(Object o : clan) {
 			Player p = (Player) o;
 			JCheckBox box = new JCheckBox(p.getName());
+			box.setSelected(true);
 			box.setBorderPaintedFlat(true);
 			boxes.add(box);
 			if (ind <= clan.getMembers().size()/2) {
@@ -106,6 +107,7 @@ public class OptOutMenu extends JFrame {
 					optedOut.add(b.getText());
 				}
 			}
+			System.out.println(optedOut);
 			mainWindow.addWar(optedOut);
 			dispose();
 		}

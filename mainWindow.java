@@ -78,7 +78,6 @@ public class mainWindow extends JFrame {
 	private static JPanel contentPane;
 	private static JComboBox comboBox;
 	private static int choice = 1;
-	private static int test;
 	private static DefaultComboBoxModel model;
 	private final Action action = new SwingAction();
 	private final Action action_1 = new SwingAction_1();
@@ -156,8 +155,6 @@ public class mainWindow extends JFrame {
 		sortedClan = clan.getList();
 		Collections.sort(sortedClan);
 		currentWarNumber = parse.numWars();
-		setBest();
-		setWorst();
 		loading.setValue(95);
 		// for (Object o : clan) {
 		// Player p = (Player) o;
@@ -179,6 +176,8 @@ public class mainWindow extends JFrame {
 					loadingFrame.dispose();
 					frame.setTitle(clan.getClanName());
 					frame.setVisible(true);
+					txtrTopPlayers.setText(RankHandler.setBest());
+					txtrWorstPlayers.setText(RankHandler.setWorst());
 					loading.setValue(0);
 					frame.setResizable(false);
 					frame.addWindowListener(new WindowAdapter() {
@@ -215,11 +214,9 @@ public class mainWindow extends JFrame {
 		});
 	}
 
-	public static void updateSave() {
-		save = "POOP";
-	}
 	public static void testRedditUserName() {
-		if( clan.getUserName().equals("ClanManagerApp")) {;
+		if (clan.getUserName().equals("ClanManagerApp")) {
+			;
 			final JTextField redditUser = new JTextField(10);
 			final JPasswordField redditPass = new JPasswordField(10);
 			final JPanel panel = new JPanel(new GridLayout(4, 1));
@@ -235,11 +232,11 @@ public class mainWindow extends JFrame {
 			if (result == JOptionPane.OK_OPTION) {
 				clan.setUserName(redditUser.getText());
 				clan.setPassword(encrypt(redditPass.getText()));
-				test.writeClan(clan, null, null, clan.getWars()
-						.size() - 1);
+				test.writeClan(clan, null, null, clan.getWars().size() - 1);
 			}
 		}
 	}
+
 	public static void showLoadingWindow() {
 
 		loadingFrame.setSize(200, 100);
@@ -270,8 +267,9 @@ public class mainWindow extends JFrame {
 		populateComboBox();
 		comboBox.setModel(model);
 		comboBox.setSelectedIndex(currentWarNumber);
-		setBest();
-		setWorst();
+		txtrTopPlayers.setText(RankHandler.setBest());
+		;
+		txtrWorstPlayers.setText(RankHandler.setWorst());
 
 		currentWarNumber = clan.getWars().size() - 1;
 		txtrHelloMyName.setText("War: " + (currentWarNumber + 1) + "\n"
@@ -303,7 +301,7 @@ public class mainWindow extends JFrame {
 
 	public static void findFile() {
 
-		//String pass = encrypt("mypass");
+		// String pass = encrypt("mypass");
 		File f = new File("./save.xml");
 		if (f.exists() && !f.isDirectory()) {
 			System.out.println("File Exists");
@@ -389,7 +387,7 @@ public class mainWindow extends JFrame {
 		});
 		btnSubredditManager.setAction(action_19);
 		panel_1.add(btnSubredditManager);
-		
+
 		JButton btnNewButton_19 = new JButton("New button");
 		btnNewButton_19.setAction(action_25);
 		panel_1.add(btnNewButton_19);
@@ -566,11 +564,7 @@ public class mainWindow extends JFrame {
 		parse = new XMLParser();
 		clan = parse.loadClan(version);
 		loadWarsInClan();
-		setBest();
-		setWorst();
-		txtrHelloMyName.setText("War: " + (currentWarNumber + 1) + "\n"
-				+ currWar.toString() + "\n" + topAttackers());
-
+		refresh();
 	}
 
 	// GRAPH HANDLERS
@@ -711,50 +705,12 @@ public class mainWindow extends JFrame {
 	}
 
 	private static void runPlayerStats() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					playerStats frame = new playerStats(clan, parse);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		playerStats frame = new playerStats(clan, parse);
+		frame.setVisible(true);
 	}
 
 	// CLAN HANDLERS
 	// -----------------------------------------------------------------------------------------------------------------------------------------------
-	public static void setRedditNames() {
-
-	}
-
-	private static void setBest() {
-		Collections.sort(sortedClan);
-		bestPlayers = "Top Members: \n";
-		for (int i = 0; i < 10 && i < sortedClan.size(); i++) {
-			bestPlayers = bestPlayers + (i + 1) + ") "
-					+ sortedClan.get(i).getName() + "\n";
-		}
-		txtrTopPlayers.setText(bestPlayers);
-
-	}
-
-	private static void setWorst() {
-		Collections.sort(sortedClan);
-		int s = sortedClan.size() - 1;
-		worstPlayers = "Bottom Members: \n";
-		for (int i = s; i > s - 10 && i > 0; i--) {
-			if (sortedClan.get(i).getWorth() != -1) {
-
-				worstPlayers = worstPlayers + (i + 1) + ") "
-						+ sortedClan.get(i).getName() + "\n";
-			} else {
-				s--;
-			}
-		}
-		txtrWorstPlayers.setText(worstPlayers);
-	}
 
 	private static void recalculateWorths() {
 		ArrayList<war> allWars = clan.getWars();
@@ -794,26 +750,27 @@ public class mainWindow extends JFrame {
 		}
 	}
 
-	private static void removePlayers() {
-		int num = Integer
-				.parseInt(JOptionPane
-						.showInputDialog("How many players are you removing?(Integer plz)"));
-		for (int i = 0; i < num; i++) {
-			String removed = JOptionPane.showInputDialog("Enter Name:")
-					.toLowerCase();
-			Player gone = clan.remove(new Player(removed));
-			if (gone == null) {
-				JOptionPane.showMessageDialog(null, "Player doesnt Exist!");
-			}
-
-		}
-
-		currWar = clan.getCurrentWar();
-		test.writeClan(clan, currWar, null, parse.numWars());
-		parse = new XMLParser();
-		setWorst();
-		setBest();
-	}
+	// private static void removePlayers() {
+	// int num = Integer
+	// .parseInt(JOptionPane
+	// .showInputDialog("How many players are you removing?(Integer plz)"));
+	// for (int i = 0; i < num; i++) {
+	// String removed = JOptionPane.showInputDialog("Enter Name:")
+	// .toLowerCase();
+	// Player gone = clan.remove(new Player(removed));
+	// if (gone == null) {
+	// JOptionPane.showMessageDialog(null, "Player doesnt Exist!");
+	// }
+	//
+	// }
+	//
+	// currWar = clan.getCurrentWar();
+	// test.writeClan(clan, currWar, null, parse.numWars());
+	// parse = new XMLParser();
+	// System.out.println(RankHandler.setWorst());
+	// txtrWorstPlayers.setText(RankHandler.setWorst());
+	// txtrTopPlayers.setText(RankHandler.setBest());
+	// }
 
 	private static void addPlayers() {
 		int num = Integer
@@ -1075,7 +1032,8 @@ public class mainWindow extends JFrame {
 						.showInputDialog("How many attacks are you adding?(Integer plz)"));
 		for (int i = 0; i < num; i++) {
 			star3 = false;
-			final JComboBox username = new JComboBox(currWar.getMembersNamesWithAttacks());
+			final JComboBox username = new JComboBox(
+					currWar.getMembersNamesWithAttacks());
 			final JTextField stars = new JTextField(10);
 			final JTextField rank = new JTextField(10);
 			final JCheckBox box = new JCheckBox();
@@ -1172,8 +1130,9 @@ public class mainWindow extends JFrame {
 									+ currWar.toString() + "\n"
 									+ topAttackers());
 					txtrHelloMyName.setCaretPosition(0);
-					setWorst();
-					setBest();
+					txtrWorstPlayers.setText(RankHandler.setWorst());
+					txtrTopPlayers.setText(RankHandler.setBest());
+					;
 					choice = 1;
 					editGraph();
 				} else {
@@ -1260,8 +1219,9 @@ public class mainWindow extends JFrame {
 					txtrHelloMyName.setText("War: " + currentWarNumber + "\n"
 							+ currWar.toString() + "\n" + topAttackers());
 					txtrHelloMyName.setCaretPosition(0);
-					setWorst();
-					setBest();
+					txtrWorstPlayers.setText(RankHandler.setWorst());
+					txtrTopPlayers.setText(RankHandler.setBest());
+					;
 				} else {
 					JOptionPane
 							.showMessageDialog(null,
@@ -1342,8 +1302,8 @@ public class mainWindow extends JFrame {
 		// txtrHelloMyName.setText("War: " + (parse.numWars() + 1) + "\n"
 		// + currWar.toString() + "\n" + topAttackers());
 		// txtrHelloMyName.setCaretPosition(0);
-		// setWorst();
-		// setBest();
+		// txtrWorstPlayers.setText(RankHandler.setWorst());
+		// txtrTopPlayers.setText(RankHandler.setBest());;
 		//
 		// }
 		// }
@@ -1707,7 +1667,7 @@ public class mainWindow extends JFrame {
 					"Confirm Claim Post", JOptionPane.YES_NO_OPTION);
 			if (choice == 0) {
 				redditHandle.MakeClaimPost();
-				
+
 			}
 
 		}
@@ -1790,13 +1750,11 @@ public class mainWindow extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// JOptionPane.showMessageDialog(null,
 			// "Not complete yet! Contact me about info!");
-			
-				System.out.println(clan.getUserName());
-				System.out.println(clan.getPassword());
-				redditHandle = new JRAWHandler(clan.getUserName(),
-						clan.getPassword(), clan.getSubreddit());
 
-			
+			System.out.println(clan.getUserName());
+			System.out.println(clan.getPassword());
+			redditHandle = new JRAWHandler(clan.getUserName(),
+					clan.getPassword(), clan.getSubreddit());
 
 			subredditMan frame = new subredditMan(currWar, redditHandle, clan
 					.getWars().size());
@@ -1914,14 +1872,16 @@ public class mainWindow extends JFrame {
 		refresh();
 
 	}
+
 	private class SwingAction_25 extends AbstractAction {
 		public SwingAction_25() {
 			putValue(NAME, "Clan/Reddit Info");
 			putValue(SHORT_DESCRIPTION, "Edit Clan Info");
 		}
+
 		public void actionPerformed(ActionEvent e) {
 			JPanel pane = new JPanel();
-			pane.setLayout(new GridLayout(8,2));
+			pane.setLayout(new GridLayout(8, 2));
 			JTextField name = new JTextField(clan.getClanName());
 			JTextField sub = new JTextField(clan.getSubreddit());
 			JTextField user = new JTextField(clan.getUserName());
